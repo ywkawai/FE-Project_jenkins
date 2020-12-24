@@ -14,10 +14,9 @@ node("master") {
     timestamps {
         def workspace = pwd()
         sh "mkdir -p jenkins-scripts"
-        sh "mkdir -p scale"
 
         dir("jenkins-scripts") {
-            stage ("checkout jenkins-scripts from gitlab") {
+            stage ("checkout jenkins-scripts from github") {
                checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
                    userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
                ]

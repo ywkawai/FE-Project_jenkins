@@ -1,0 +1,107 @@
+#!groovy
+nice     = "nice -n 4"
+
+SYSDEP   = "ykworkstation-gnu"
+BRANCH   = "develop"
+MODEL    = "FElib"
+TESTCASE = "test"
+TESTNAME = ""
+TESTTYPE = ""
+VERSION  = "XXXXXXX"
+STAMP    = "000000000000"
+
+node("master") {
+  timestamps {
+    def workspace = pwd()
+    sh "mkdir -p jenkins-scripts"
+
+    dir("jenkins-scripts") {
+        stage ("checkout jenkins-scripts from github") {
+            checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
+                userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
+            ]
+        }
+    }
+
+    load "${workspace}/jenkins-scripts/common.groovy"
+
+    dir("FE-Project/${MODEL}/src") {
+        sh "which mpif90 && mpif90 -v"
+        sh "which mpirun && mpirun -V"
+
+        stage ("cleanup") {
+            sh "make allclean"
+        }
+
+        stage ("build normal") {
+            sh "make -j2"
+        }
+    }
+    
+    dir("FE-Project/${MODEL}/test/") {
+      sh "which mpif90 && mpif90 -v"
+      sh "which mpirun && mpirun -V"
+
+      stage("common/linkedlist"){
+        def TEST_RESULT1=sh(script: """
+            cd common/linkedlist/
+            make
+        """) 
+      }
+      stage("common/time_manager"){
+        def TEST_RESULT2=sh(script: """
+            cd common/time_manager/
+            make
+        """) 
+      }
+      stage("FE/polynominal"){
+        def TEST_RESULT3=sh(script: """
+            cd FE/polynominal/
+            make
+        """) 
+      }    
+      stage("FE/mesh_linedom1d"){
+        def TEST_RESULT4=sh(script: """
+            cd FE/mesh_linedom1d/
+            make
+        """) 
+      }
+      stage("FE/mesh_rectdom2d_quadrilateral"){
+        def TEST_RESULT5=sh(script: """
+            cd FE/mesh_rectdom2d_quadrilateral/
+            make
+        """) 
+      }
+      stage("FE/mesh_cubedom3d_hexahedral"){
+        def TEST_RESULT6=sh(script: """
+            cd FE/mesh_cubedom3d_hexahedral/
+            make
+        """) 
+      }    
+      stage("FE/field_linedom1d"){
+        def TEST_RESULT7=sh(script: """
+            cd FE/field_linedom1d/
+            make
+        """) 
+      }
+      stage("FE/field_rectdom2d_quadrilateral"){
+        def TEST_RESULT8=sh(script: """
+            cd FE/field_rectdom2d_quadrilateral/
+            make
+        """) 
+      }
+      stage("FE/field_cubedom3d_hexahedral"){
+        def TEST_RESULT9=sh(script: """
+            cd FE/field_cubedom3d_hexahedral/
+            make
+        """) 
+      }    
+      stage("framework/model_framework"){
+        def TEST_RESULT10=sh(script: """
+            cd framework/model_framework/
+            make
+        """) 
+      }
+    }
+  }
+}
