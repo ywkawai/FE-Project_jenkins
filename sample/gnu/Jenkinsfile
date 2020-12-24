@@ -1,0 +1,103 @@
+#!groovy
+nice     = "nice -n 4"
+
+SYSDEP   = "ykworkstation-gnu"
+BRANCH   = "develop"
+MODEL    = "FElib"
+TESTCASE = "test"
+TESTNAME = ""
+TESTTYPE = ""
+VERSION  = "XXXXXXX"
+STAMP    = "000000000000"
+
+node("master") {
+  timestamps {
+    def workspace = pwd()
+    sh "mkdir -p jenkins-scripts"
+
+    dir("jenkins-scripts") {
+        stage ("checkout jenkins-scripts from github") {
+            checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
+                userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
+            ]
+        }
+    }
+
+    load "${workspace}/jenkins-scripts/common.groovy"
+
+    dir("FE-Project/FElib/src") {
+        sh "which mpif90 && mpif90 -v"
+        sh "which mpirun && mpirun -V"
+
+        stage ("cleanup") {
+            sh "make allclean"
+        }
+
+        stage ("build normal") {
+            sh "make -j4"
+        }
+    }
+
+    dir("FE-Project/sample") {
+      sh "which mpif90 && mpif90 -v"
+      sh "which mpirun && mpirun -V"
+
+      stage("sample/advect1d"){
+        def TEST_RESULT1=sh(script: """
+            cd ./advect1d
+            make
+            make run
+        """) 
+      }
+      stage("sample/advect1d_fvm"){
+          def TEST_RESULT1=sh(script: """
+              cd ./advect1d_fvm
+              make
+              make run
+          """) 
+      }
+      stage("sample/advdiff1d"){
+          def TEST_RESULT1=sh(script: """
+              cd ./advdiff1d
+              make
+              make run
+          """) 
+      }    
+      stage("sample/advect2d"){
+          def TEST_RESULT1=sh(script: """
+              cd ./advect2d
+              make
+              make run
+          """) 
+      }      
+      stage("sample/advect2d_fvm"){
+          def TEST_RESULT1=sh(script: """
+              cd ./advect2d_fvm
+              make
+              make run
+          """) 
+      }       
+      stage("sample/advect3d"){
+          def TEST_RESULT1=sh(script: """
+              cd ./advect3d
+              make
+              make run
+          """) 
+      }
+      stage("sample/advect3d_hevi"){
+          def TEST_RESULT1=sh(script: """
+              cd ./advect3d_hevi
+              make
+              make run
+          """) 
+      }
+      stage("sample/euler3d_hevi"){
+          def TEST_RESULT1=sh(script: """
+              cd ./euler3d_hevi
+              make
+              make run
+          """) 
+      }    
+    }
+  }
+}
