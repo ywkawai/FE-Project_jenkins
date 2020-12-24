@@ -50,49 +50,49 @@ node("master") {
         """) 
       }
       stage("sample/advect1d_fvm"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT2=sh(script: """
               cd ./advect1d_fvm
               make
               make run
           """) 
       }
       stage("sample/advdiff1d"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT3=sh(script: """
               cd ./advdiff1d
               make
               make run
           """) 
       }    
       stage("sample/advect2d"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT4=sh(script: """
               cd ./advect2d
               make
               make run
           """) 
       }      
       stage("sample/advect2d_fvm"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT5=sh(script: """
               cd ./advect2d_fvm
               make
               make run
           """) 
       }       
       stage("sample/advect3d"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT6=sh(script: """
               cd ./advect3d
               make
               make run
           """) 
       }
       stage("sample/advect3d_hevi"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT7=sh(script: """
               cd ./advect3d_hevi
               make
               make run
           """) 
       }
       stage("sample/euler3d_hevi"){
-          def TEST_RESULT1=sh(script: """
+          def TEST_RESULT8=sh(script: """
               cd ./euler3d_hevi
               make
               make run
