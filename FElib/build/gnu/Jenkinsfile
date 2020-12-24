@@ -19,7 +19,7 @@ node("master") {
         dir("jenkins-scripts") {
             stage ("checkout jenkins-scripts from gitlab") {
                checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
-                   userRemoteConfigs: [[ credentialsId: "Github", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
+                   userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
                ]
             }
         }
