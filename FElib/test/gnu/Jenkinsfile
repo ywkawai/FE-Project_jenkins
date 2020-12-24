@@ -34,7 +34,7 @@ node("master") {
         }
 
         stage ("build normal") {
-            sh "make -j2"
+            sh "make -j4"
         }
     }
     

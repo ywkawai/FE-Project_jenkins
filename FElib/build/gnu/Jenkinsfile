@@ -4,9 +4,6 @@ nice     = "nice -n 4"
 SYSDEP   = "ykworkstation-gnu"
 BRANCH   = "develop"
 MODEL    = "FElib"
-TESTCASE = "common"
-TESTNAME = ""
-TESTTYPE = ""
 VERSION  = "XXXXXXX"
 STAMP    = "000000000000"
 
@@ -34,7 +31,7 @@ node("master") {
             }
 
             stage ("build normal") {
-                sh "make -j2"
+                sh "make -j4"
             }
         }
     }
