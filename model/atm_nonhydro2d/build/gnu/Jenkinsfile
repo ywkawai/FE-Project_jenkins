@@ -22,18 +22,6 @@ node("master") {
 
     load "${workspace}/jenkins-scripts/common.groovy"
 
-    dir("FE-Project/src") {
-      sh "which mpif90 && mpif90 -v"
-      sh "which mpirun && mpirun -V"
-
-      stage ("cleanup") {
-        sh "make allclean"
-      }
-
-      stage ("build normal") {
-        sh "make -j4"
-      }
-    }
     dir("FE-Project/model/atm_nonhydro2d/src") {
       sh "which mpif90 && mpif90 -v"
       sh "which mpirun && mpirun -V"
