@@ -1,7 +1,7 @@
 #!groovy
 nice     = "nice -n 4"
 
-SYSDEP   = "pearlscale-gnu"
+SYSDEP   = "ykworkstation-gnu"
 BRANCH   = "develop"
 MODEL    = "FElib"
 TESTCASE = "common"
