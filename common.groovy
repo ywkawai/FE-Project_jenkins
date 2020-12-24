@@ -7,7 +7,7 @@ dir("jenkins-scripts") {
 }
 
 dir("FE-Project") {
-    stage "checkout FE-Project from gitlab"
+    stage "checkout FE-Project from github"
     retry(3){
         checkout scm: [$class: "GitSCM",
             branches: [[name: "${BRANCH}"]],
