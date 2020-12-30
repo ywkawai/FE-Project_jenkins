@@ -45,7 +45,7 @@ node("master") {
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
             cd ./advect1d
-            make　clean
+            make clean
             make
             make run
         """) 
@@ -53,7 +53,7 @@ node("master") {
       stage("sample/advect1d_fvm"){
         def TEST_RESULT2=sh(script: """
             cd ./advect1d_fvm
-            make　clean
+            make clean
             make
             make run
         """) 
