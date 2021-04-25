@@ -73,9 +73,17 @@ node("master") {
             make
             make run
         """) 
+      }
+      stage("sample/advect2dGlobal"){
+        def TEST_RESULT5=sh(script: """
+            cd ./advect2dGlobal
+            make clean
+            make
+            make run
+        """) 
       }      
       stage("sample/advect2d_fvm"){
-        def TEST_RESULT5=sh(script: """
+        def TEST_RESULT6=sh(script: """
             cd ./advect2d_fvm
             make clean
             make
@@ -83,7 +91,7 @@ node("master") {
         """) 
       }       
       stage("sample/advect3d"){
-        def TEST_RESULT6=sh(script: """
+        def TEST_RESULT7=sh(script: """
             cd ./advect3d
             make clean
             make
@@ -91,7 +99,7 @@ node("master") {
         """) 
       }
       stage("sample/advect3d_hevi"){
-        def TEST_RESULT7=sh(script: """
+        def TEST_RESULT8=sh(script: """
             cd ./advect3d_hevi
             make clean
             make
@@ -99,7 +107,7 @@ node("master") {
         """) 
       }
       stage("sample/euler3d_hevi"){
-        def TEST_RESULT8=sh(script: """
+        def TEST_RESULT9=sh(script: """
             cd ./euler3d_hevi
             make clean
             make

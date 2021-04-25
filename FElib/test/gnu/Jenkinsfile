@@ -84,41 +84,55 @@ node("master") {
           make
         """) 
       }
-      stage("FE/mesh_cubedom3d_hexahedral"){
+      stage("FE/mesh_cubedsphere2d"){
         def TEST_RESULT6=sh(script: """
+          cd FE/mesh_cubedsphere2d/
+          make clean
+          make
+        """) 
+      }      
+      stage("FE/mesh_cubedom3d_hexahedral"){
+        def TEST_RESULT7=sh(script: """
           cd FE/mesh_cubedom3d_hexahedral/
           make clean
           make
         """) 
       }    
       stage("FE/field_linedom1d"){
-        def TEST_RESULT7=sh(script: """
+        def TEST_RESULT8=sh(script: """
           cd FE/field_linedom1d/
           make clean
           make
         """) 
       }
       stage("FE/field_rectdom2d_quadrilateral"){
-        def TEST_RESULT8=sh(script: """
+        def TEST_RESULT9=sh(script: """
           cd FE/field_rectdom2d_quadrilateral/
           make clean
           make
         """) 
       }
+      stage("FE/field_cubedspheredom2d"){
+        def TEST_RESULT10=sh(script: """
+          cd FE/field_cubedspheredom2d/
+          make clean
+          make
+        """) 
+      }      
       stage("FE/field_cubedom3d_hexahedral"){
-        def TEST_RESULT9=sh(script: """
+        def TEST_RESULT11=sh(script: """
           cd FE/field_cubedom3d_hexahedral/
           make clean
           make
         """) 
       }    
       stage("framework/model_framework"){
-        def TEST_RESULT10=sh(script: """
+        def TEST_RESULT12=sh(script: """
           cd framework/model_framework/
           make clean
           make
         """) 
-      }
+      }           
     }
   }
 }
