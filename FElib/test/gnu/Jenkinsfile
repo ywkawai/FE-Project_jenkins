@@ -140,9 +140,9 @@ node("master") {
           make
         """) 
       }
-      stage("FE/field_cubedspheredom3d_hexahedral"){
+      stage("FE/field_cubedspheredom3d"){
         def TEST_RESULT14=sh(script: """
-          cd FE/field_cubedspheredom3d_hexahedral/
+          cd FE/field_cubedspheredom3d/
           make clean
           make
         """) 
