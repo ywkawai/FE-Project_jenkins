@@ -113,7 +113,15 @@ node("master") {
             make
             make run
         """) 
-      }    
+      }
+      stage("sample/advect3dGlobal"){
+        def TEST_RESULT10=sh(script: """
+            cd ./advect3dGlobal
+            make clean
+            make
+            make run
+        """) 
+      }      
     }
   }
 }
