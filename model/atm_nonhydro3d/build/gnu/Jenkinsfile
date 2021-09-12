@@ -35,5 +35,17 @@ node("master") {
       }
     }
     
+    dir("FE-Project/model/atm_nonhydro3d/util/regrid_tool") {
+      sh "which mpif90 && mpif90 -v"
+      sh "which mpirun && mpirun -V"
+
+      stage ("cleanup") {
+        sh "make distclean"
+      }
+
+      stage ("build normal") {
+        sh "make -j4"
+      }
+    }
 }
 }
