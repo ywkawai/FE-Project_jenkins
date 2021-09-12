@@ -26,11 +26,11 @@ node("master") {
       sh "which mpif90 && mpif90 -v"
       sh "which mpirun && mpirun -V"
 
-      stage ("cleanup") {
+      stage ("cleanup (scale-dg)") {
         sh "make allclean"
       }
 
-      stage ("build normal") {
+      stage ("build normal (scale-dg)") {
         sh "make -j4"
       }
     }
@@ -39,11 +39,11 @@ node("master") {
       sh "which mpif90 && mpif90 -v"
       sh "which mpirun && mpirun -V"
 
-      stage ("cleanup") {
+      stage ("cleanup (regrid_tool)") {
         sh "make distclean"
       }
 
-      stage ("build normal") {
+      stage ("build normal (regrid_tool)") {
         sh "make -j4"
       }
     }
