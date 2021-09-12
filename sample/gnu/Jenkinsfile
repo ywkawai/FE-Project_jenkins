@@ -121,7 +121,15 @@ node("master") {
             make
             make run
         """) 
-      }      
+      }
+      stage("sample/eigen_analysis"){
+        def TEST_RESULT11=sh(script: """
+            cd ./eigen_analysis
+            make clean
+            make
+            make run
+        """) 
+      }         
     }
   }
 }
