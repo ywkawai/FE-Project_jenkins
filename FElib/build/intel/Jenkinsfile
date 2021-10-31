@@ -1,0 +1,38 @@
+#!groovy
+nice     = "nice -n 4"
+
+SYSDEP   = "ykworkstation-intel"
+BRANCH   = "develop"
+MODEL    = "FElib"
+VERSION  = "XXXXXXX"
+STAMP    = "000000000000"
+
+node("master") {
+    timestamps {
+        def workspace = pwd()
+        sh "mkdir -p jenkins-scripts"
+
+        dir("jenkins-scripts") {
+            stage ("checkout jenkins-scripts from github") {
+               checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
+                   userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
+               ]
+            }
+        }
+
+        load "${workspace}/jenkins-scripts/common.groovy"
+
+        dir("FE-Project/${MODEL}/src") {
+            sh "which mpiifort && mpiifort -v"
+            sh "which mpirun && mpirun -V"
+
+            stage ("cleanup") {
+                sh "make allclean"
+            }
+
+            stage ("build normal") {
+                sh "make -j4"
+            }
+        }
+    }
+}
