@@ -41,8 +41,6 @@ node("master") {
     dir("FE-Project/sample") {
       sh "which mpif90 && mpif90 -v"
       sh "which mpirun && mpirun -V"
-      sh "ulimit -s unlimited"
-      sh "export OMP_STACKSIZE=32m"
 
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
@@ -105,6 +103,8 @@ node("master") {
             cd ./advect3d_hevi
             make clean
             make
+            ulimit -s unlimited
+            export OMP_STACKSIZE=32m
             make run
         """) 
       }
@@ -113,6 +113,8 @@ node("master") {
             cd ./euler3d_hevi
             make clean
             make
+            ulimit -s unlimited
+            export OMP_STACKSIZE=32m
             make run
         """) 
       }
