@@ -21,9 +21,11 @@ node("FUGAKU") {
         }
 
         load "${workspace}/jenkins-scripts/common.groovy"
+        sh "echo ${PATH}"
         sh ". ${SETUP_SPACK_SCALE_SH}"
 
         dir("FE-Project/${MODEL}/src") {
+            sh "echo ${PATH}"
             sh "which mpifrtpx && mpifrtpx -v"
 
             stage ("cleanup") {
