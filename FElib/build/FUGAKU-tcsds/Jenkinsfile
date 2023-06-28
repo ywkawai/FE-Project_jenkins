@@ -21,7 +21,7 @@ node("FUGAKU") {
         }
 
         load "${workspace}/jenkins-scripts/common.groovy"
-        sh "echo ${PATH}"
+        sh "module purge && module load ${TCSDS_ENV_VERSION}"
         sh ". ${SETUP_SPACK_SCALE_SH}"
 
         dir("FE-Project/${MODEL}/src") {
