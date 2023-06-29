@@ -1,0 +1,51 @@
+#!groovy
+nice     = "nice -n 4"
+
+SYSDEP   = "FUGAKU-tcsds"
+BRANCH   = "develop"
+MODEL    = "model"
+VERSION  = "XXXXXXX"
+STAMP    = "000000000000"
+
+node("master") {
+  timestamps {
+    def workspace = pwd()
+    sh "mkdir -p jenkins-scripts"
+
+    dir("jenkins-scripts") {
+      stage ("checkout jenkins-scripts from github") {
+        checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
+            userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
+        ]
+      }
+    }
+
+    load "${workspace}/jenkins-scripts/common.groovy"
+
+    dir("FE-Project/model/atm_nonhydro3d/src") {
+//            sh "which mpifrtpx && mpifrtpx -v"
+           sh "which mpifrtpx"
+
+      stage ("cleanup (scale-dg)") {
+        sh "make allclean"
+      }
+
+      stage ("build normal (scale-dg)") {
+        sh "make -j4"
+      }
+    }
+    
+    dir("FE-Project/model/atm_nonhydro3d/util/regrid_tool") {
+//            sh "which mpifrtpx && mpifrtpx -v"
+      sh "which mpifrtpx"
+
+      stage ("cleanup (regrid_tool)") {
+        sh "make distclean"
+      }
+
+      stage ("build normal (regrid_tool)") {
+        sh "make -j4"
+      }
+    }
+}
+}
