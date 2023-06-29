@@ -21,11 +21,11 @@ node("FUGAKU") {
         }
 
         load "${workspace}/jenkins-scripts/common.groovy"
-        sh "module purge && module load ${TCSDS_ENV_VERSION}"
-        sh ". ${SETUP_SPACK_SCALE_SH}"
 
         dir("FE-Project/${MODEL}/src") {
-            sh "echo ${PATH}"
+            sh "module purge && module load ${TCSDS_ENV_VERSION}"
+            sh ". ${SETUP_SPACK_SCALE_SH}"
+            
             sh "which mpifrtpx && mpifrtpx -v"
 
             stage ("cleanup") {
