@@ -7,7 +7,7 @@ MODEL    = "model"
 VERSION  = "XXXXXXX"
 STAMP    = "000000000000"
 
-node("master") {
+node("FUGAKU") {
   timestamps {
     def workspace = pwd()
     sh "mkdir -p jenkins-scripts"
