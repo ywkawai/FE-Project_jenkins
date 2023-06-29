@@ -65,6 +65,7 @@ node("FUGAKU") {
       }
       stage("common/timeint_rk"){
         def TEST_RESULT4=sh(script: """
+          cd common/timeint_rk
           make clean && make envlog && make makedir
           make makebin
         """) 
