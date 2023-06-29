@@ -45,36 +45,35 @@ node("FUGAKU") {
       stage("common/linkedlist"){
         def TEST_RESULT1=sh(script: """
           cd common/linkedlist/
-          make clean
-          make
+          make clean && make envlog && makedir
+          make makebin
         """) 
       }
       stage("common/time_manager"){
         def TEST_RESULT2=sh(script: """
           cd common/time_manager/
-          make clean
-          make
+          make clean && make envlog && makedir
+          make makebin
         """) 
       }
       stage("common/sparsemat"){
         def TEST_RESULT3=sh(script: """
           cd common/sparsemat
-          make clean
-          make
+          make clean && make envlog && makedir
+          make makebin
         """) 
       }
       stage("common/timeint_rk"){
         def TEST_RESULT4=sh(script: """
-          cd common/timeint_rk/
-          make clean
-          make
+          make clean && make envlog && makedir
+          make makebin
         """) 
       }      
       stage("FE/polynominal"){
         def TEST_RESULT5=sh(script: """
           cd FE/polynominal/
-          make clean
-          make
+          make clean && make envlog && makedir
+          make makebin
         """) 
       }    
       stage("FE/mesh_linedom1d"){
