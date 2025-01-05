@@ -39,7 +39,7 @@ node("master") {
     }
     
     dir("FE-Project/${MODEL}/test/") {
-        sh "which mpiifort && mpiifort -v"
+        sh "which mpiifx && mpiifx -v"
         sh "which mpirun && mpirun -V"
 
       stage("common/linkedlist"){
@@ -52,8 +52,6 @@ node("master") {
       stage("common/time_manager"){
         def TEST_RESULT2=sh(script: """
           cd common/time_manager/
-          which mpiifort && mpiifort -v
-          which mpirun && mpirun -V
           make clean
           make
         """) 
