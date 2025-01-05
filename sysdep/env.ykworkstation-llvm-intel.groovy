@@ -14,7 +14,7 @@ env.I_MPI_ROOT         = "/opt/intel/oneapi/mpi/2021.14"
 env.MKLROOT            = "/opt/intel/oneapi/mkl/2025.0"
 env.IPPROOT            = "/opt/intel/oneapi/ipp/2022.0"
 
-env.SCALE_FE_SYS        = "Linux64-lllvm-intel-impi"
+env.SCALE_FE_SYS        = "Linux64-llvm-intel-impi"
 env.SCALE               = "/home/ykawai/workspace/scale_intel/"
 env.SCALE_ENABLE_OPENMP = "T"
 env.SCALE_DEVELOP       = "T"
