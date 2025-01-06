@@ -1,7 +1,7 @@
 #!groovy
 nice     = "nice -n 4"
 
-SYSDEP   = "ykworkstation-intel"
+SYSDEP   = "ykworkstation-llvm-intel"
 BRANCH   = "develop"
 MODEL    = "FElib"
 TESTCASE = "test"
@@ -26,7 +26,7 @@ node("master") {
     load "${workspace}/jenkins-scripts/common.groovy"
 
     dir("FE-Project/FElib/src") {
-        sh "which mpiifort && mpiifort -v"
+        sh "which mpiifx && mpiifx -v"
         sh "which mpirun && mpirun -V"
 
         stage ("cleanup") {
@@ -39,8 +39,8 @@ node("master") {
     }
 
     dir("FE-Project/sample") {
-      sh "which mpiifort && mpiifort -v"
-      sh "which mpirun && mpirun -V"
+        sh "which mpiifx && mpiifx -v"
+        sh "which mpirun && mpirun -V"
 
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
