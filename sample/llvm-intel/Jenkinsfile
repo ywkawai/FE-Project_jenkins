@@ -114,6 +114,7 @@ node("master") {
             make clean
             make
             ulimit -s unlimited
+            ulimit -a
             export OMP_STACKSIZE=32m
             make run
         """) 
