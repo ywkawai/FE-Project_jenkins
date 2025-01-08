@@ -48,6 +48,7 @@ node("master") {
             make clean
             make
             make run
+            make vis
         """) 
       }
       stage("sample/advect1d_fvm"){

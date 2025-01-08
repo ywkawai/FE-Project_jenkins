@@ -24,6 +24,7 @@ node("master") {
     }
 
     load "${workspace}/jenkins-scripts/common.groovy"
+    def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
 
     dir("FE-Project/FElib/src") {
         sh "which mpif90 && mpif90 -v"
@@ -48,7 +49,9 @@ node("master") {
             make clean
             make
             make run
-        """) 
+            make vis
+        """)
+        com_post.rsync_artifacts( target_dir: "${env.STAGE_NAME}/analysis" )
       }
       stage("sample/advect1d_fvm"){
         def TEST_RESULT2=sh(script: """
