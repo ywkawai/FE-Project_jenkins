@@ -24,7 +24,6 @@ node("master") {
     }
 
     load "${workspace}/jenkins-scripts/common.groovy"
-    def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
 
     dir("FE-Project/FElib/src") {
         sh "which mpif90 && mpif90 -v"
@@ -43,6 +42,9 @@ node("master") {
       sh "which mpif90 && mpif90 -v"
       sh "which mpirun && mpirun -V"
 
+      def sample_dir_path = pwd()
+      def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
+
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
             cd ./advect1d
@@ -51,7 +53,8 @@ node("master") {
             make run
             make vis
         """)
-        com_post.rsync_artifacts( target_dir: "${env.STAGE_NAME}/analysis" )
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect1d", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect1d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
       }
       stage("sample/advect1d_fvm"){
         def TEST_RESULT2=sh(script: """
