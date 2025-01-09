@@ -29,9 +29,6 @@ node("master") {
         sh "which mpiifx && mpiifx -v"
         sh "which mpirun && mpirun -V"
 
-        def sample_dir_path = pwd()
-        def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
-
         stage ("cleanup") {
             sh "make allclean"
         }
@@ -44,6 +41,8 @@ node("master") {
     dir("FE-Project/sample") {
         sh "which mpiifx && mpiifx -v"
         sh "which mpirun && mpirun -V"
+        def sample_dir_path = pwd()
+        def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
 
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
