@@ -38,7 +38,7 @@ node("FUGAKU") {
     }
     
     dir("FE-Project/${MODEL}/test/") {
-      sh "which mpifrtpx && mpifrtpx -v"
+      sh "which mpifrtpx"
 
       stage("common/linkedlist"){
         def TEST_RESULT1=sh(script: """
