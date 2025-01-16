@@ -154,5 +154,6 @@ node("master") {
           make && make run
         """) 
       }
+    }
   }
 }
