@@ -10,9 +10,9 @@ env.PATH               = "/opt/FJSVxtclanga/tcsds-latest/bin:/opt/local/openssh/
 env.LD_LIBRARY_PATH    = ""
 
 env.SCALE_FE_SYS         = "FUGAKU"
-env.SCALE                = "/data/ra000005/a04028/SCALE_comp_perf/"
+env.SCALE                = "/data/ra000005/a04028/scale-dev0/"
 env.SCALE_ENABLE_OPENMP  = "T"
 env.SCALE_DEVELOP        = "T"
 env.SCALE_NETCDF_INCLUDE = "-I${SCALE_NETCDF_C}/include -I${SCALE_NETCDF_F}/include -I${SCALE_PNETCDF}/include"
 env.SCALE_NETCDF_LIBS    = "-L${SCALE_NETCDF_C}/lib -L${SCALE_NETCDF_F}/lib -L${SCALE_HDF}/lib -L${SCALE_PNETCDF}/lib -lpnetcdf -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lfjprofmpi -lmpi_cxx"
-
+env.FUGAKU_GROUP         = "ra000005"
