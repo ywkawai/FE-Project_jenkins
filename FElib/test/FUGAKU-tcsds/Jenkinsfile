@@ -26,7 +26,7 @@ node("FUGAKU") {
     load "${workspace}/jenkins-scripts/common.groovy"
 
     dir("FE-Project/${MODEL}/src") {
-        sh "which mpifrtpx && mpifrtpx -v"
+        sh "which mpifrtpx"            
 
         stage ("cleanup") {
             sh "make allclean"

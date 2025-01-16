@@ -23,8 +23,7 @@ node("FUGAKU") {
     load "${workspace}/jenkins-scripts/common.groovy"
 
     dir("FE-Project/model/atm_nonhydro3d/src") {
-//            sh "which mpifrtpx && mpifrtpx -v"
-           sh "which mpifrtpx"
+      sh "which mpifrtpx"
 
       stage ("cleanup (scale-dg)") {
         sh "make allclean"
