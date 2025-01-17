@@ -70,7 +70,10 @@ node("master") {
             make clean
             make
             make run
+            make vis
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advdiff1d", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advdiff1d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )        
       }    
       stage("sample/advect2d"){
         def TEST_RESULT4=sh(script: """
@@ -78,7 +81,10 @@ node("master") {
             make clean
             make
             make run
+            make vis
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect2d", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect2d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
       }
       stage("sample/advect2dGlobal"){
         def TEST_RESULT5=sh(script: """
