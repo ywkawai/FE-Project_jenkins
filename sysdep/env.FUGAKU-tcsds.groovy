@@ -14,6 +14,9 @@ def SCALE_HDF         = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64
 env.PATH               = "/opt/FJSVxtclanga/tcsds-latest/bin:/opt/local/openssh/bin:/usr/share/Modules/bin:/opt/local/openssh/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
 env.LD_LIBRARY_PATH    = ""
 
+env.PATH_ANALYSIS      = "/home/ra000005/a04028/library/bin:/share/ra000005/bin:/opt/local/openssh/bin:/opt/slurm/bin:/home/apps/oss/mscp/bin:/vol0004/ra000005/data/a04028/.vscode-server/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server/bin/remote-cli:/vol0402/data/ra000005/a04028/.pyenv/shims:/vol0402/data/ra000005/a04028/.pyenv/bin:/home/ra000005/a04028/library/bin:/share/ra000005/bin:/opt/local/openssh/bin:/opt/slurm/bin:/home/apps/oss/mscp/bin:/vol0402/data/ra000005/a04028/.pyenv/bin:/home/ra000005/a04028/library/bin:/share/ra000005/bin:/opt/FJSVxtclanga/tcsds-1.2.40/bin:/opt/local/openssh/bin:/opt/slurm/bin:/home/apps/oss/mscp/bin:/usr/share/Modules/bin:/opt/local/openssh/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/local/hpcissh-clients/bin/:/opt/local/jwt/bin:/data/ra000005/a04028/.gem/bin/:/opt/local/hpcissh-clients/bin/:/opt/local/jwt/bin:/data/ra000005/a04028/.gem/bin/:/opt/local/hpcissh-clients/bin/:/opt/local/jwt/bin"
+env.LD_LIBRARY_PATH_ANALYSIS = "/home/apps/oss/mscp/lib64:/home/apps/oss/mscp/lib64:/opt/FJSVxtclanga/tcsds-1.2.40/lib64:/home/apps/oss/mscp/lib64"
+
 env.SCALE_FE_SYS         = "FUGAKU"
 env.SCALE                = "/vol0500/data/ra000005/a04028/scale-dev0/"
 env.SCALE_ENABLE_OPENMP  = "T"

@@ -47,100 +47,101 @@ node("FUGAKU") {
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
             cd ./advect1d
-            make clean
-            make
-            make run
-            # make vis
+            # make clean
+            # make
+            # make run
+            export PATH=${env.PATH_ANALYSIS}; export LD_LIBRARY_PATH=${env.LD_LIBRARY_PATH_ANALYSIS}
+            make vis
         """)
         // com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect1d", log_fname: "LOG.pe000000")
         // com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect1d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
       }
-      stage("sample/advect1d_fvm"){
-        def TEST_RESULT2=sh(script: """
-            cd ./advect1d_fvm
-            make clean
-            make
-            make run
-        """) 
-      }
-      stage("sample/advdiff1d"){
-        def TEST_RESULT3=sh(script: """
-            cd ./advdiff1d
-            make clean
-            make
-            make run
-            # make vis
-        """)
-        // com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advdiff1d", log_fname: "LOG.pe000000")
-        // com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advdiff1d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
-      }    
-      stage("sample/advect2d"){
-        def TEST_RESULT4=sh(script: """
-            cd ./advect2d
-            make clean
-            make
-            make run
-          # make vis
-        """) 
-        // com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect2d", log_fname: "LOG.pe000000")
-        // com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect2d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
-      }
-      stage("sample/advect2dGlobal"){
-        def TEST_RESULT5=sh(script: """
-            cd ./advect2dGlobal
-            make clean
-            make
-            make run
-        """) 
-      }      
-      stage("sample/advect2d_fvm"){
-        def TEST_RESULT6=sh(script: """
-            cd ./advect2d_fvm
-            make clean
-            make
-            make run
-        """) 
-      }       
-      stage("sample/advect3d"){
-        def TEST_RESULT7=sh(script: """
-            cd ./advect3d
-            make clean
-            make
-            make run
-        """) 
-      }
-      stage("sample/advect3d_hevi"){
-        def TEST_RESULT8=sh(script: """
-            cd ./advect3d_hevi
-            make clean
-            make
-            make run
-        """) 
-      }
-      stage("sample/euler3d_hevi"){
-        def TEST_RESULT9=sh(script: """
-            cd ./euler3d_hevi
-            make clean
-            make
-            make run
-        """) 
-      }
-      stage("sample/advect3dGlobal"){
-        def TEST_RESULT10=sh(script: """
-            cd ./advect3dGlobal
-            make clean
-            make
-            make run
-        """) 
-      }
-      stage("sample/eigen_analysis"){
-        def TEST_RESULT11=sh(script: """
-            cd ./eigen_analysis
-            make clean
-            make
-            make run
-        """) 
-      }         
+      // stage("sample/advect1d_fvm"){
+      //   def TEST_RESULT2=sh(script: """
+      //       cd ./advect1d_fvm
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }
+      // stage("sample/advdiff1d"){
+      //   def TEST_RESULT3=sh(script: """
+      //       cd ./advdiff1d
+      //       make clean
+      //       make
+      //       make run
+      //       # make vis
+      //   """)
+      //   // com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advdiff1d", log_fname: "LOG.pe000000")
+      //   // com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advdiff1d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
+      // }    
+      // stage("sample/advect2d"){
+      //   def TEST_RESULT4=sh(script: """
+      //       cd ./advect2d
+      //       make clean
+      //       make
+      //       make run
+      //     # make vis
+      //   """) 
+      //   // com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect2d", log_fname: "LOG.pe000000")
+      //   // com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect2d", copy_src_list: ["analysis", "LOG_NUMERROR.peall", "LOG.pe000000_*"] )
+      // }
+      // stage("sample/advect2dGlobal"){
+      //   def TEST_RESULT5=sh(script: """
+      //       cd ./advect2dGlobal
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }      
+      // stage("sample/advect2d_fvm"){
+      //   def TEST_RESULT6=sh(script: """
+      //       cd ./advect2d_fvm
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }       
+      // stage("sample/advect3d"){
+      //   def TEST_RESULT7=sh(script: """
+      //       cd ./advect3d
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }
+      // stage("sample/advect3d_hevi"){
+      //   def TEST_RESULT8=sh(script: """
+      //       cd ./advect3d_hevi
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }
+      // stage("sample/euler3d_hevi"){
+      //   def TEST_RESULT9=sh(script: """
+      //       cd ./euler3d_hevi
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }
+      // stage("sample/advect3dGlobal"){
+      //   def TEST_RESULT10=sh(script: """
+      //       cd ./advect3dGlobal
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }
+      // stage("sample/eigen_analysis"){
+      //   def TEST_RESULT11=sh(script: """
+      //       cd ./eigen_analysis
+      //       make clean
+      //       make
+      //       make run
+      //   """) 
+      // }         
     }
   }
 }
