@@ -47,9 +47,9 @@ node("FUGAKU") {
       stage("sample/advect1d"){
         def TEST_RESULT1=sh(script: """
             cd ./advect1d
-            # make clean
-            # make
-            # make run
+            make clean
+            make
+            make run
             export PATH=${env.PATH_ANALYSIS}; export LD_LIBRARY_PATH=${env.LD_LIBRARY_PATH_ANALYSIS}
             make vis
         """)
