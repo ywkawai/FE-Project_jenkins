@@ -93,6 +93,8 @@ node("master") {
             make
             make run
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect2dGlobal", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect2dGlobal", copy_src_list: ["LOG.pe000000_*"] )
       }      
       stage("sample/advect2d_fvm"){
         def TEST_RESULT6=sh(script: """
@@ -101,6 +103,8 @@ node("master") {
             make
             make run
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect2d_fvm", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect2d_fvm", copy_src_list: ["LOG.pe000000_*"] )
       }       
       stage("sample/advect3d"){
         def TEST_RESULT7=sh(script: """
@@ -109,6 +113,8 @@ node("master") {
             make
             make run
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect3d", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect3d", copy_src_list: ["LOG.pe000000_*"] )
       }
       stage("sample/advect3d_hevi"){
         def TEST_RESULT8=sh(script: """
@@ -119,6 +125,8 @@ node("master") {
             export OMP_STACKSIZE=32m
             make run
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect3d_hevi", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect3d_hevi", copy_src_list: ["LOG.pe000000_*"] )
       }
       stage("sample/euler3d_hevi"){
         def TEST_RESULT9=sh(script: """
@@ -129,6 +137,8 @@ node("master") {
             export OMP_STACKSIZE=32m
             make run
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "euler3d_hevi", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "euler3d_hevi", copy_src_list: ["LOG.pe000000_*"] )
       }
       stage("sample/advect3dGlobal"){
         def TEST_RESULT10=sh(script: """
@@ -137,6 +147,8 @@ node("master") {
             make
             make run
         """) 
+        com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect3dGlobal", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect3dGlobal", copy_src_list: ["LOG.pe000000_*"] )
       }
       stage("sample/eigen_analysis"){
         def TEST_RESULT11=sh(script: """

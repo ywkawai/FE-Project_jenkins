@@ -63,6 +63,8 @@ node("FUGAKU") {
             make
             make run
         """) 
+        com_post.extract_run_LOG_info_remote( node_label: "FUGAKU", target_sample_dir: sample_dir_path, sample_name: "advect1d_fvm", log_fname: "LOG.pe000000")
+        com_post.rsync_sample_artifacts_remote( node_label: "FUGAKU", target_sample_dir: sample_dir_path, sample_name: "advect1d_fvm", copy_src_list: ["LOG.pe000000_*"] )
       }
       stage("sample/advdiff1d"){
         def TEST_RESULT3=sh(script: """
