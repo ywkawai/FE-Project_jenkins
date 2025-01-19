@@ -24,3 +24,5 @@ env.SCALE_DEVELOP        = "T"
 env.SCALE_NETCDF_INCLUDE = "-I${SCALE_NETCDF_C}/include -I${SCALE_NETCDF_F}/include -I${SCALE_PNETCDF}/include"
 env.SCALE_NETCDF_LIBS    = "-L${SCALE_NETCDF_C}/lib -L${SCALE_NETCDF_F}/lib -L${SCALE_HDF}/lib -L${SCALE_PNETCDF}/lib -lpnetcdf -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lfjprofmpi -lmpi_cxx"
 env.FUGAKU_GROUP         = "ra000005"
+env.SCALE_ARTIFACT_DIR   = "/home/ykawai/Qsync2/Jenkins/"
+
