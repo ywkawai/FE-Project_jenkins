@@ -16,10 +16,14 @@ def rsync_sample_artifacts_remote(Map params = [:]){
     params.copy_src_list.each{ copy_src ->
         // println(['bash', '-c', "ls -lha ${target_str}/${copy_src}"])
         println("rsync.. ${target_str}/${copy_src} --> ${dist_str}")
-        command = """
-            def p1 = ['bash', '-c', "rsync -tpgvr --mkpath ${target_str}/${copy_src} ${dist_str}"].execute()
+        def command = """
+            def p1 = ['bash', '-c', "mkdir -p ${params.target_sample_dir}/${env.JOB_NAME}/${env.BUILD_NUMBER}"].execute()
             p1.waitFor()
-            println p1.in.text        
+            println p1.in.text  
+            
+            def p2 = ['bash', '-c', "rsync -tpgvr ${target_str}/${copy_src} ${dist_str}"].execute()
+            p2.waitFor()
+            println p2.in.text        
         """
         println RemotingDiagnostics.executeGroovy(command, Jenkins.instance.slaves.find { it.getLabelString() == params.node_label }.channel)
     }
