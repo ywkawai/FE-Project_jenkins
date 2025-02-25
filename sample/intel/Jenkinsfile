@@ -62,6 +62,7 @@ node("master") {
             make clean
             make
             make run
+            make vis
         """) 
       }
       stage("sample/advdiff1d"){
@@ -102,6 +103,7 @@ node("master") {
             make clean
             make
             make run
+            make vis
         """) 
         com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect2d_fvm", log_fname: "LOG.pe000000")
         com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect2d_fvm", copy_src_list: ["LOG.pe000000_*"] )
