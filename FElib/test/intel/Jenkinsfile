@@ -43,112 +43,119 @@ node("master") {
         sh "which mpirun && mpirun -V"
 
       stage("common/linkedlist"){
-        def TEST_RESULT1=sh(script: """
+        def TEST_RESULT0001=sh(script: """
           cd common/linkedlist/
           make clean          
           make && make run
         """) 
       }
+      stage("common/linalgebra"){
+        def TEST_RESULT0002=sh(script: """
+          cd common/linalgebra/
+          make clean          
+          make && make run
+        """) 
+      }
       stage("common/time_manager"){
-        def TEST_RESULT2=sh(script: """
+        def TEST_RESULT0003=sh(script: """
           cd common/time_manager/
           make clean          
           make && make run
         """) 
       }
       stage("common/sparsemat"){
-        def TEST_RESULT3=sh(script: """
+        def TEST_RESULT0004=sh(script: """
           cd common/sparsemat
           make clean          
           make && make run
         """) 
       }
       stage("common/timeint_rk"){
-        def TEST_RESULT4=sh(script: """
+        def TEST_RESULT0005=sh(script: """
           cd common/timeint_rk
           make clean          
           make && make run
         """) 
       }      
       stage("FE/polynominal"){
-        def TEST_RESULT5=sh(script: """
+        def TEST_RESULT0101=sh(script: """
           cd FE/polynominal/
           make clean          
           make && make run
         """) 
       }    
       stage("FE/mesh_linedom1d"){
-        def TEST_RESULT6=sh(script: """
+        def TEST_RESULT0102=sh(script: """
           cd FE/mesh_linedom1d/
           make clean          
           make && make run
         """) 
       }
       stage("FE/mesh_rectdom2d_quadrilateral"){
-        def TEST_RESULT7=sh(script: """
+        def TEST_RESULT0103=sh(script: """
           cd FE/mesh_rectdom2d_quadrilateral/
           make clean          
           make && make run
         """) 
       }
       stage("FE/mesh_cubedsphere2d"){
-        def TEST_RESULT8=sh(script: """
+        def TEST_RESULT0104=sh(script: """
           cd FE/mesh_cubedsphere2d/
           make clean          
           make && make run
         """) 
       }      
       stage("FE/mesh_cubedom3d_hexahedral"){
-        def TEST_RESULT9=sh(script: """
+        def TEST_RESULT0105=sh(script: """
           cd FE/mesh_cubedom3d_hexahedral/
           make clean          
           make && make run
         """) 
       }
       stage("FE/mesh_cubedsphere3d"){
-        def TEST_RESULT10=sh(script: """
+        def TEST_RESULT0106=sh(script: """
           cd FE/mesh_cubedsphere3d/
           make clean          
           make && make run
         """) 
       }       
       stage("FE/field_linedom1d"){
-        def TEST_RESULT11=sh(script: """
+        def TEST_RESULT0107=sh(script: """
           cd FE/field_linedom1d/
           make clean          
           make && make run
         """) 
       }
       stage("FE/field_rectdom2d_quadrilateral"){
-        def TEST_RESULT12=sh(script: """
+        def TEST_RESULT0108=sh(script: """
           cd FE/field_rectdom2d_quadrilateral/
           make clean          
           make && make run
         """) 
       }
       stage("FE/field_cubedspheredom2d"){
-        def TEST_RESULT13=sh(script: """
+        def TEST_RESULT0109=sh(script: """
           cd FE/field_cubedspheredom2d/
           make clean          
           make && make run
         """) 
       }      
       stage("FE/field_cubedom3d_hexahedral"){
-        def TEST_RESULT14=sh(script: """
+        def TEST_RESULT0110=sh(script: """
           cd FE/field_cubedom3d_hexahedral/
           make clean          
           make && make run
         """) 
       }
       stage("FE/field_cubedspheredom3d"){
-        def TEST_RESULT15=sh(script: """
+        def TEST_RESULT0111=sh(script: """
           cd FE/field_cubedspheredom3d/
           make clean          
           make && make run
         """) 
       }          
       stage("framework/model_framework"){
-        def TEST_RESULT16=sh(script: """
+        def TEST_RESULT0201=sh(script: """
           cd framework/model_framework/
           make clean          
           make && make run
