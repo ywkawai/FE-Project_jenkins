@@ -1,5 +1,5 @@
 #!groovy
-nice     = "nice -n 1"
+nice     = "nice -n 10"
 
 SYSDEP   = "ykworkstation-gnu"
 BRANCH   = "develop"
@@ -57,9 +57,9 @@ node("master") {
         stage ("${TESTNAME} ${TESTTYPE}") {
           dir("${TESTNAME}/${TESTTYPE}"){
             sh "make clean"          
-            sh "make"
-            sh "make run"
-            sh "make vis"
+            sh "${nice} make"
+            sh "${nice} make run"
+            sh "${nice} make vis"
           }
           com_post.extract_run_LOG_info( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, log_fname: "LOG.pe000000")
           com_post.rsync_sample_artifacts( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, copy_src_list: ["analysis", "LOG.pe000000_*"] )

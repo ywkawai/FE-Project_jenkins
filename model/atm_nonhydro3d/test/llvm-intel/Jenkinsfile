@@ -57,9 +57,9 @@ node("master") {
         stage ("${TESTNAME} ${TESTTYPE}") {
           dir("${TESTNAME}/${TESTTYPE}"){
             sh "make clean"          
-            sh "make"
-            sh "ulimit -s unlimited; export OMP_STACKSIZE=32m; make run"
-            sh "make vis"
+            sh "${nice} make"
+            sh "ulimit -s unlimited; export OMP_STACKSIZE=32m; ${nice} make run"
+            sh "${nice} make vis"
           }
           com_post.extract_run_LOG_info( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, log_fname: "LOG.pe000000")
           com_post.rsync_sample_artifacts( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, copy_src_list: ["analysis", "LOG.pe000000_*"] )
