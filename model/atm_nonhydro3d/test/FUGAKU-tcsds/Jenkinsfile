@@ -32,6 +32,7 @@ node("FUGAKU") {
 
     dir("FE-Project/${MODEL}/src") {
         sh "which mpifrtpx"
+        sh "which python"
 
         stage ("cleanup (scale-dg)") {
             sh "make allclean"
@@ -44,6 +45,7 @@ node("FUGAKU") {
     
     dir("FE-Project/${MODEL}/test/case") {
       sh "which mpifrtpx"
+      sh "which python"
 
       def testcase_dir_path = pwd()
       def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
