@@ -15,7 +15,7 @@ testlist1[ 0] = [ "tracer_advection    ", "           " ]
 testlist1[ 1] = [ "inertia_gravity_wave", "           " ]
 testlist1[ 2] = [ "isentropic_vortex   ", "           " ]
 
-node("master") {
+node("FUGAKU") {
   timestamps {
     def workspace = pwd()
     sh "mkdir -p jenkins-scripts"
