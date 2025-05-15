@@ -1,7 +1,7 @@
 #!groovy
 nice     = "nice -n 1"
 
-SYSDEP   = "ykworkstation-gnu"
+SYSDEP   = "ykworkstation-llvm-intel"
 BRANCH   = "develop"
 MODEL    = "model/atm_nonhydro3d"
 TESTCASE = "test"
@@ -31,8 +31,8 @@ node("master") {
     load "${workspace}/jenkins-scripts/common.groovy"
 
     dir("FE-Project/${MODEL}/src") {
-        sh "which mpif90 && mpif90 -v"
-        sh "which mpirun && mpirun -V"
+      sh "which mpiifx && mpiifx -v"
+      sh "which mpirun && mpirun -V"
 
         stage ("cleanup (scale-dg)") {
             sh "make allclean"
@@ -44,7 +44,7 @@ node("master") {
     }
     
     dir("FE-Project/${MODEL}/test/case") {
-      sh "which mpif90 && mpif90 -v"
+      sh "which mpiifx && mpiifx -v"
       sh "which mpirun && mpirun -V"
 
       def testcase_dir_path = pwd()
