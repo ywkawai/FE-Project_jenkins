@@ -1,0 +1,71 @@
+#!groovy
+nice     = "nice -n 1"
+
+SYSDEP   = "ykworkstation-gnu"
+BRANCH   = "develop"
+MODEL    = "model/atm_nonhydro3d"
+TESTCASE = "test"
+TESTNAME = ""
+TESTTYPE = ""
+VERSION  = "XXXXXXX"
+STAMP    = "000000000000"
+
+def testlist1 = new Object[3][2]
+testlist1[ 0] = [ "tracer_advection    ", "           " ]
+testlist1[ 1] = [ "inertia_gravity_wave", "           " ]
+testlist1[ 2] = [ "isentropic_vortex   ", "           " ]
+
+node("master") {
+  timestamps {
+    def workspace = pwd()
+    sh "mkdir -p jenkins-scripts"
+
+    dir("jenkins-scripts") {
+        stage ("checkout jenkins-scripts from github") {
+            checkout scm: [$class: "GitSCM", branches: [[name: "master"]],
+                userRemoteConfigs: [[ credentialsId: "GitHub", url: "git@github.com:ywkawai/FE-Project_jenkins.git" ]]
+            ]
+        }
+    }
+
+    load "${workspace}/jenkins-scripts/common.groovy"
+
+    dir("FE-Project/${MODEL}/src") {
+        sh "which mpif90 && mpif90 -v"
+        sh "which mpirun && mpirun -V"
+
+        stage ("cleanup") {
+            sh "make allclean"
+        }
+
+        stage ("build normal") {
+            sh "make -j4"
+        }
+    }
+    
+    dir("FE-Project/${MODEL}/test/case") {
+      sh "which mpif90 && mpif90 -v"
+      sh "which mpirun && mpirun -V"
+
+      def testcase_dir_path = pwd()
+      def com_post = load "${workspace}/jenkins-scripts/common_post.groovy"
+
+      for (int i = 0; i < testlist1.size(); i++) {
+        def TESTNAME = testlist1[i][0].trim()
+        def TESTTYPE = testlist1[i][1].trim()
+
+        stage ("${TESTNAME} ${TESTTYPE}") {
+          dir("${TESTNAME}/${TESTTYPE}"){
+            sh "make clean"          
+            sh "make"
+            sh "make run"
+            sh "make vis"
+          }
+          com_post.extract_run_LOG_info( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, log_fname: "LOG.pe000000")
+          com_post.rsync_sample_artifacts( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, copy_src_list: ["analysis", "LOG.pe000000_*"] )
+        }
+      }
+
+    }
+  }
+}
