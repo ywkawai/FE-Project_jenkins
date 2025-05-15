@@ -56,8 +56,8 @@ node("FUGAKU") {
           dir("${TESTNAME}/${TESTTYPE}"){
             sh "make clean"          
             sh "make"
-            sh "export PATH=${env.PATH_ANALYSIS}; export LD_LIBRARY_PATH=${env.LD_LIBRARY_PATH_ANALYSIS}; make run"
-            sh "make vis"
+            sh "make run"
+            sh "export PATH=${env.PATH_ANALYSIS}; export LD_LIBRARY_PATH=${env.LD_LIBRARY_PATH_ANALYSIS}; make vis"
           }
           com_post.extract_run_LOG_info_remote( node_label: "FUGAKU", target_sample_dir: sample_dir_path, sample_name: TESTNAME, log_fname: "LOG.pe000000")
           com_post.rsync_sample_artifacts_remote( node_label: "FUGAKU", target_sample_dir: sample_dir_path, sample_name: TESTNAME, copy_src_list: ["analysis", "LOG.pe000000_*"] )
