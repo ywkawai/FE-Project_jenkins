@@ -58,7 +58,7 @@ node("master") {
           dir("${TESTNAME}/${TESTTYPE}"){
             sh "make clean"          
             sh "make"
-            sh "make run"
+            sh "ulimit -s unlimited; export OMP_STACKSIZE=32m; make run"
             sh "make vis"
           }
           com_post.extract_run_LOG_info( target_sample_dir: testcase_dir_path, sample_name: TESTNAME, log_fname: "LOG.pe000000")
