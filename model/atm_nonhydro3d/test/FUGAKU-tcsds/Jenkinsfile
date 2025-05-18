@@ -10,10 +10,15 @@ TESTTYPE = ""
 VERSION  = "XXXXXXX"
 STAMP    = "000000000000"
 
-def testlist1 = new Object[3][2]
-testlist1[ 0] = [ "tracer_advection    ", "           " ]
-testlist1[ 1] = [ "inertia_gravity_wave", "           " ]
-testlist1[ 2] = [ "isentropic_vortex   ", "           " ]
+def testlist1 = new Object[8][2]
+testlist1[ 0] = [ "tracer_advection    ", "                          " ]
+testlist1[ 1] = [ "inertia_gravity_wave", "                          " ]
+testlist1[ 2] = [ "isentropic_vortex   ", "                          " ]
+testlist1[ 3] = [ "baroclinic_wave     ", "                          " ]
+testlist1[ 4] = [ "gravity_current     ", "                          " ]
+testlist1[ 5] = [ "mountain_wave       ", "linear_hydrostatic_case   " ]
+testlist1[ 6] = [ "mountain_wave       ", "linear_nonhydrostatic_case" ]
+testlist1[ 7] = [ "mountain_wave       ", "Schaer_case               " ]
 
 node("FUGAKU") {
   timestamps {
@@ -63,7 +68,18 @@ node("FUGAKU") {
           com_post.rsync_sample_artifacts_remote( node_label: "FUGAKU", target_sample_dir: testcase_dir_path, sample_name: TESTNAME, copy_src_list: ["analysis", "LOG.pe000000_*"] )
         }
       }
+      stage("Stash artifacts"){
+        stash name: 'testsuite_artifact', includes: "${env.JOB_NAME}/${env.BUILD_NUMBER}/**"
+      }
+    }
+  }
+}
 
+node('master') {
+  timestamps {  
+    stage("Unstash & Copy artifacts"){
+      unstash 'testsuite_artifact'
+      sh "rsync -tpgvr --mkpath ${env.JOB_NAME}/${env.BUILD_NUMBER} ${env.SCALE_ARTIFACT_DIR}/${env.JOB_NAME}/"
     }
   }
 }
