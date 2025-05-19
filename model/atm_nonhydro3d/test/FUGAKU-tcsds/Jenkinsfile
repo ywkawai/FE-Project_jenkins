@@ -46,6 +46,18 @@ node("FUGAKU") {
             sh "make -j4"
         }
     }
+
+    dir("FE-Project/${MODEL}/util/regrid_tool") {
+      sh "which mpifrtpx"
+
+      stage ("cleanup (regrid_tool)") {
+        sh "make distclean"
+      }
+
+      stage ("build normal (regrid_tool)") {
+        sh "make -j4"
+      }
+    }    
     
     dir("FE-Project/${MODEL}/test/case") {
       sh "which mpifrtpx"
