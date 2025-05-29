@@ -10,15 +10,20 @@ TESTTYPE = ""
 VERSION  = "XXXXXXX"
 STAMP    = "000000000000"
 
-def testlist1 = new Object[8][2]
-testlist1[ 0] = [ "tracer_advection    ", "                          " ]
-testlist1[ 1] = [ "inertia_gravity_wave", "                          " ]
-testlist1[ 2] = [ "isentropic_vortex   ", "                          " ]
-testlist1[ 3] = [ "baroclinic_wave     ", "                          " ]
-testlist1[ 4] = [ "density_current     ", "                          " ]
-testlist1[ 5] = [ "mountain_wave       ", "linear_hydrostatic_case   " ]
-testlist1[ 6] = [ "mountain_wave       ", "linear_nonhydrostatic_case" ]
-testlist1[ 7] = [ "mountain_wave       ", "Schaer_case               " ]
+def testlist1 = new Object[13][2]
+testlist1[ 0] = [ "tracer_advection     ", "                          " ]
+testlist1[ 1] = [ "inertia_gravity_wave ", "                          " ]
+testlist1[ 2] = [ "isentropic_vortex    ", "                          " ]
+testlist1[ 3] = [ "baroclinic_wave      ", "                          " ]
+testlist1[ 4] = [ "density_current      ", "                          " ]
+testlist1[ 5] = [ "mountain_wave        ", "linear_hydrostatic_case   " ]
+testlist1[ 6] = [ "mountain_wave        ", "linear_nonhydrostatic_case" ]
+testlist1[ 7] = [ "mountain_wave        ", "Schaer_case               " ]
+testlist1[ 8] = [ "Kelvin_Helmholtz_wave", "                          " ]
+testlist1[ 9] = [ "rising_warm_bubble   ", "dry                       " ]
+testlist1[10] = [ "rising_warm_bubble   ", "moist                     " ]
+testlist1[11] = [ "pbl_turbulence       ", "                          " ]
+testlist1[12] = [ "RB_convection        ", "                          " ]
 
 node("FUGAKU") {
   timestamps {
