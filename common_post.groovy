@@ -17,7 +17,7 @@ def rsync_sample_artifacts_remote(Map params = [:]){
         // println(['bash', '-c', "ls -lha ${target_str}/${copy_src}"])
         println("rsync.. ${target_str}/${copy_src} --> ${dist_str}")
         def command = """
-            def p1 = ['bash', '-c', "mkdir -p ${params.target_sample_dir}/${env.JOB_NAME}/${env.BUILD_NUMBER}"].execute()
+            def p1 = ['bash', '-c', "mkdir -p ${params.target_sample_dir}/${env.JOB_NAME}/${env.BUILD_NUMBER}/${params.sample_name}"].execute()
             p1.waitFor()
             println p1.in.text  
             
