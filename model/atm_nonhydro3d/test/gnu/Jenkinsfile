@@ -21,7 +21,7 @@ testlist1[ 6] = [ "mountain_wave        ", "linear_nonhydrostatic_case" ]
 testlist1[ 7] = [ "mountain_wave        ", "Schaer_case               " ]
 testlist1[ 8] = [ "Kelvin_Helmholtz_wave", "                          " ]
 testlist1[ 9] = [ "rising_thermal_bubble", "dry                       " ]
-testlist1[10] = [ "rising_thermal_bubble", "moist                     " ]
+testlist1[10] = [ "rising_thermal_bubble", "moist_mp_kessler          " ]
 testlist1[11] = [ "pbl_turbulence       ", "                          " ]
 testlist1[12] = [ "RB_convection        ", "                          " ]
 
