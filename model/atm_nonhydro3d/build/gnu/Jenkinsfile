@@ -47,5 +47,18 @@ node("master") {
         sh "make -j4"
       }
     }
+
+    dir("FE-Project/model/atm_nonhydro3d/util/spectra_analysis") {
+      sh "which mpif90 && mpif90 -v"
+      sh "which mpirun && mpirun -V"
+
+      stage ("cleanup (spectra_analysis)") {
+        sh "make distclean"
+      }
+
+      stage ("build normal (spectra_analysis)") {
+        sh "make -j4"
+      }
+    }
 }
 }

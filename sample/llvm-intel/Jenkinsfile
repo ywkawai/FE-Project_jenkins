@@ -161,7 +161,23 @@ node("master") {
             make
             make run
         """) 
-      }         
+      }
+      stage("sample/post_processing_1d"){
+        def TEST_RESULT12=sh(script: """
+            cd ./post_processing_1d
+            make clean
+            make
+            make run
+        """) 
+      }
+      stage("sample/post_processing_2d"){
+        def TEST_RESULT13=sh(script: """
+            cd ./post_processing_2d
+            make clean
+            make
+            make run
+        """) 
+      }
     }
   }
 }

@@ -162,6 +162,22 @@ node("FUGAKU") {
             make run
         """) 
       }
+      stage("sample/post_processing_1d"){
+        def TEST_RESULT12=sh(script: """
+            cd ./post_processing_1d
+            make clean && rm -rf output.* && rm -rf run.sh.*
+            make
+            make run
+        """) 
+      }
+      stage("sample/post_processing_2d"){
+        def TEST_RESULT13=sh(script: """
+            cd ./post_processing_2d
+            make clean && rm -rf output.* && rm -rf run.sh.*
+            make
+            make run
+        """) 
+      }      
       stage("Stash artifacts"){
         stash name: 'sample_artifact', includes: "${env.JOB_NAME}/${env.BUILD_NUMBER}/**"
       }

@@ -46,5 +46,18 @@ node("FUGAKU") {
         sh "make -j4"
       }
     }
+
+    dir("FE-Project/model/atm_nonhydro3d/util/spectral_analysis") {
+//            sh "which mpifrtpx && mpifrtpx -v"
+      sh "which mpifrtpx"
+
+      stage ("cleanup (spectral_analysis)") {
+        sh "make distclean"
+      }
+
+      stage ("build normal (spectral_analysis)") {
+        sh "make -j4"
+      }
+    }
 }
 }

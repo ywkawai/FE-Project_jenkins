@@ -76,7 +76,14 @@ node("master") {
           make clean          
           make && make run
         """) 
-      }      
+      }
+      stage("common/fast_fourier_transform"){
+        def TEST_RESULT0006=sh(script: """
+          cd common/fast_fourier_transform
+          make clean          
+          make && make run
+        """) 
+      }
       stage("FE/polynominal"){
         def TEST_RESULT0101=sh(script: """
           cd FE/polynominal/
