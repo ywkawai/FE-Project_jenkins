@@ -26,6 +26,14 @@ testlist1[11] = [ "rising_thermal_bubble", "moist_mp_tomita08         " ]
 testlist1[12] = [ "pbl_turbulence       ", "                          " ]
 testlist1[13] = [ "RB_convection        ", "                          " ]
 
+def testlist2 = new Object[6][2]
+testlist2[ 0] = [ "tracer_advection_global    ", "                          " ]
+testlist2[ 1] = [ "sound_wave_global          ", "                          " ]
+testlist2[ 2] = [ "inertia_gravity_wave_global", "                          " ]
+testlist2[ 3] = [ "baroclinic_wave_global     ", "                          " ]
+testlist2[ 4] = [ "equatorial_wave_global     ", "                          " ]
+testlist2[ 5] = [ "mountain_wave_global       ", "                          " ]
+
 node("FUGAKU") {
   timestamps {
     def workspace = pwd()
@@ -74,6 +82,21 @@ node("FUGAKU") {
       for (int i = 0; i < testlist1.size(); i++) {
         def TESTNAME = testlist1[i][0].trim()
         def TESTTYPE = testlist1[i][1].trim()
+
+        stage ("${TESTNAME} ${TESTTYPE}") {
+          dir("${TESTNAME}/${TESTTYPE}"){
+            sh "make clean"          
+            sh "make"
+            sh "make run"
+            sh "export PATH=${env.PATH_ANALYSIS}; export LD_LIBRARY_PATH=${env.LD_LIBRARY_PATH_ANALYSIS}; which python; make vis"
+          }
+          com_post.extract_run_LOG_info_remote( node_label: "FUGAKU", target_sample_dir: testcase_dir_path, sample_name: "${TESTNAME}/${TESTTYPE}", log_fname: "LOG.pe000000")
+          com_post.rsync_sample_artifacts_remote( node_label: "FUGAKU", target_sample_dir: testcase_dir_path, sample_name: "${TESTNAME}/${TESTTYPE}", copy_src_list: ["analysis", "LOG.pe000000_*"] )
+        }
+      }
+      for (int i = 0; i < testlist2.size(); i++) {
+        def TESTNAME = testlist2[i][0].trim()
+        def TESTTYPE = testlist2[i][1].trim()
 
         stage ("${TESTNAME} ${TESTTYPE}") {
           dir("${TESTNAME}/${TESTTYPE}"){
