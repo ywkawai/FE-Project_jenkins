@@ -6,10 +6,16 @@
 // def SCALE_PNETCDF  = "/vol0004/apps/oss/spack-v0.19/opt/spack/linux-rhel8-a64fx/fj-4.8.1/parallel-netcdf-1.12.3-avpnzm4pwv2tuu2mv73lacb4vhcwlnds"
 // def SCALE_HDF      = "/vol0004/apps/oss/spack-v0.19/opt/spack/linux-rhel8-a64fx/fj-4.8.1/hdf5-1.12.2-kb4msz2kuwzsmqsshhpryqebui6tqcfs"
 // spack-v0.21
-def SCALE_NETCDF_C    = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/parallel-netcdf-1.12.3-zs75olgkg547zcyxaoubsyevmvtkby5o"
-def SCALE_NETCDF_F    = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/netcdf-fortran-4.6.1-kjm7jl5naxulm7neknsgxnsbkf7iet5j"
-def SCALE_PNETCDF     = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/netcdf-c-4.9.2-cczsjh6lmalmjqhr72yatvxzmc3iwdl2"
-def SCALE_HDF         = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/hdf5-1.14.3-yhazdvld6vknkhmbcqrbl34ifsac2hao"
+// def SCALE_NETCDF_C    = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/parallel-netcdf-1.12.3-zs75olgkg547zcyxaoubsyevmvtkby5o"
+// def SCALE_NETCDF_F    = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/netcdf-fortran-4.6.1-kjm7jl5naxulm7neknsgxnsbkf7iet5j"
+// def SCALE_PNETCDF     = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/netcdf-c-4.9.2-cczsjh6lmalmjqhr72yatvxzmc3iwdl2"
+// def SCALE_HDF         = "/vol0004/apps/oss/spack-v0.21/opt/spack/linux-rhel8-a64fx/fj-4.10.0/hdf5-1.14.3-yhazdvld6vknkhmbcqrbl34ifsac2hao"
+
+// spack-v1.0.1
+SCALE_NETCDF_C        = "/home/apps/oss/spack/opt/spack/linux-a64fx/netcdf-c-4.9.2-gxiznee6h7r35ke6tivigi54gvzefl6v"
+SCALE_NETCDF_F        = "/home/apps/oss/spack/opt/spack/linux-a64fx/netcdf-fortran-4.6.1-4jlnxiqcepafk4y3whu4763jzuyjvxr7"
+SCALE_PNETCDF         = "/home/apps/oss/spack/opt/spack/linux-a64fx/parallel-netcdf-1.14.0-iwkzbbd7vu4n6q7fo6rtacycse532a57"
+SCALE_HDF             = "/home/apps/oss/spack/opt/spack/linux-a64fx/hdf5-1.14.6-6jmbeftqcya7nolxvbcn3i7ru7lxmlxc"
 
 env.PATH               = "/opt/FJSVxtclanga/tcsds-latest/bin:/opt/local/openssh/bin:/usr/share/Modules/bin:/opt/local/openssh/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
 env.LD_LIBRARY_PATH    = ""
