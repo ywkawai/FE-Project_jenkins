@@ -11,6 +11,7 @@ env.PKG_CONFIG_PATH    = "/opt/intel/oneapi/vtune/2025.0/include/pkgconfig/lib64
 env.FI_PROVIDER_PATH   = "/opt/intel/oneapi/mpi/2021.14/opt/mpi/libfabric/lib/prov:/usr/lib/x86_64-linux-gnu/libfabric"
 
 env.I_MPI_ROOT         = "/opt/intel/oneapi/mpi/2021.14"
+env.I_MPI_FABRICS      = "shm"
 env.MKLROOT            = "/opt/intel/oneapi/mkl/2025.0"
 env.IPPROOT            = "/opt/intel/oneapi/ipp/2022.0"
 
