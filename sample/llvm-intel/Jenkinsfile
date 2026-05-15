@@ -114,6 +114,8 @@ node("master") {
             cd ./advect3d
             make clean
             make
+            ulimit -s unlimited
+            export OMP_STACKSIZE=32m
             make run
         """) 
         com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect3d", log_fname: "LOG.pe000000")
