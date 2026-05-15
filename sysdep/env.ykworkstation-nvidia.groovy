@@ -14,3 +14,5 @@ env.SCALE_ENABLE_OPENACC = "T"
 env.SCALE_NETCDF_INCLUDE = "-I/home/ykawai/lib/netcdf4-nvidia-fortran/include -I/home/ykawai/lib/netcdf4-nvidia-fortran/include"
 env.SCALE_NETCDF_LIBS    = "-L/home/ykawai/lib/netcdf4-nvidia-fortran/lib -lnetcdff -L/usr/lib/x86_64-linux-gnu/hdf5/serial/lib -L/home/ykawai/lib/netcdf4-nvdia/lib -lnetcdf -lnetcdf -lm"
 env.SCALE_ARTIFACT_DIR   = "/home/ykawai/Qsync2/Jenkins/"
+
+env.NVIDIA_GPU_COMPATIBILITY = 75
