@@ -84,9 +84,9 @@ node("master") {
           make && make run
         """) 
       }      
-      stage("FE/polynominal"){
+      stage("FE/polynomial"){
         def TEST_RESULT0101=sh(script: """
-          cd FE/polynominal/
+          cd FE/polynomial/
           make clean          
           make && make run
         """) 
