@@ -115,6 +115,7 @@ node("master") {
             make clean
             make
             make run
+            make vis
         """) 
         com_post.extract_run_LOG_info( target_sample_dir: sample_dir_path, sample_name: "advect3d", log_fname: "LOG.pe000000")
         com_post.rsync_sample_artifacts( target_sample_dir: sample_dir_path, sample_name: "advect3d", copy_src_list: ["LOG.pe000000_*"] )
