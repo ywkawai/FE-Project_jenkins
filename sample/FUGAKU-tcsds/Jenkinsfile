@@ -120,6 +120,7 @@ node("FUGAKU") {
             make clean && rm -rf output.* && rm -rf run.sh.*
             make
             make run
+            export PATH=${env.PATH_ANALYSIS}; export LD_LIBRARY_PATH=${env.LD_LIBRARY_PATH_ANALYSIS}
             make vis
         """) 
         com_post.extract_run_LOG_info_remote( node_label: "FUGAKU", target_sample_dir: sample_dir_path, sample_name: "advect3d", log_fname: "LOG.pe000000")
